@@ -1,5 +1,5 @@
-server.error.whitelabel.enabled : false
-server.servlet.context-path : /api
+server.error.whitelabel.enabled: false
+server.servlet.context-path: /api
 
 # Logging
 logging:
