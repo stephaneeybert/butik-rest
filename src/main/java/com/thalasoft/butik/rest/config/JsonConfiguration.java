@@ -37,11 +37,11 @@ public class JsonConfiguration implements WebMvcConfigurer {
   public ObjectMapper jacksonObjectMapper() {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+    objectMapper.setSerializationInclusion(Include.NON_NULL);
     objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
     objectMapper.registerModule(new ParameterNamesModule())
    .registerModule(new Jdk8Module())
    .registerModule(new JavaTimeModule());
-    objectMapper.setSerializationInclusion(Include.NON_NULL);
     return objectMapper;
   }
 
