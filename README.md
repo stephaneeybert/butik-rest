@@ -30,7 +30,9 @@ mvn clean install -Denv="test" -Ddb="h2" -Dmaven.surefire.debug="-Xdebug -Xrunjd
 
 Swagger 
 
-The API is exposed at http://localhost:8080/api/swagger-ui.html
+The API (is) was exposed at http://localhost:8080/api/swagger-ui.html
+BREAKING ! Swagger breaks Spring REST. Issue opened at https://github.com/springfox/springfox/issues/2623
+The Swagger configuration is removed from the project.
 
 Some example API requests
 ```

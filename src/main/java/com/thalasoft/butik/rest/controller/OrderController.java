@@ -42,8 +42,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import springfox.documentation.annotations.ApiIgnore;
-
 @Controller
 @RequestMapping(RESTConstants.SLASH + DomainConstants.ORDERS)
 public class OrderController {
@@ -124,12 +122,7 @@ public class OrderController {
 
   @GetMapping
   @ResponseBody
-  public ResponseEntity<PagedResources<OrderResource>> all(
-    @ApiIgnore(
-      "Ignored because swagger ui shows the wrong params, " +
-      "instead they are explained in the implicit params"
-    ) @PageableDefault(sort = { "orderedOn" }, direction = Sort.Direction.ASC) Pageable pageable, Sort sort,
-      PagedResourcesAssembler<Order> pagedResourcesAssembler, UriComponentsBuilder builder) {
+  public ResponseEntity<PagedResources<OrderResource>> all(@PageableDefault(sort = { "orderedOn" }, direction = Sort.Direction.ASC) Pageable pageable, Sort sort, PagedResourcesAssembler<Order> pagedResourcesAssembler, UriComponentsBuilder builder) {
     sort = CommonUtils.stripColumnsFromSorting(sort, nonSortableColumns);
     orderService.addSortToPageable(pageable, sort);
     Page<Order> foundOrders = orderService.all(pageable);
@@ -164,10 +157,7 @@ public class OrderController {
   public ResponseEntity<PagedResources<OrderResource>> allByOrderedOnBetween(
       @RequestParam(value = "openingDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime openingDateTime,
       @RequestParam(value = "closingDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime closingDateTime,
-      @ApiIgnore(
-        "Ignored because swagger ui shows the wrong params, " +
-        "instead they are explained in the implicit params"
-      ) @PageableDefault(sort = { "orderedOn" }, direction = Sort.Direction.ASC) Pageable pageable, Sort sort,
+      @PageableDefault(sort = { "orderedOn" }, direction = Sort.Direction.ASC) Pageable pageable, Sort sort,
       PagedResourcesAssembler<Order> pagedResourcesAssembler, UriComponentsBuilder builder) {
     sort = CommonUtils.stripColumnsFromSorting(sort, nonSortableColumns);
     orderService.addSortToPageable(pageable, sort);

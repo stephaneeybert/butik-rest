@@ -44,8 +44,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import springfox.documentation.annotations.ApiIgnore;
-
 @Controller
 @RequestMapping(RESTConstants.SLASH + DomainConstants.PRODUCTS)
 public class ProductController {
@@ -127,10 +125,7 @@ public class ProductController {
   @GetMapping
   @ResponseBody
   public ResponseEntity<PagedResources<ProductResource>> all(
-    @ApiIgnore(
-      "Ignored because swagger ui shows the wrong params, " +
-      "instead they are explained in the implicit params"
-    ) @PageableDefault(sort = { "name" }, direction = Sort.Direction.ASC) Pageable pageable, Sort sort,
+    @PageableDefault(sort = { "name" }, direction = Sort.Direction.ASC) Pageable pageable, Sort sort,
       PagedResourcesAssembler<Product> pagedResourcesAssembler, UriComponentsBuilder builder) {
     sort = CommonUtils.stripColumnsFromSorting(sort, nonSortableColumns);
     productService.addSortToPageable(pageable, sort);
@@ -147,10 +142,7 @@ public class ProductController {
   @GetMapping(params = "searchTerm")
   @ResponseBody
   public ResponseEntity<PagedResources<ProductResource>> search(@RequestParam(value = "searchTerm") String searchTerm,
-    @ApiIgnore(
-      "Ignored because swagger ui shows the wrong params, " +
-      "instead they are explained in the implicit params"
-    ) @PageableDefault(sort = { "name" }, direction = Sort.Direction.ASC) Pageable pageable, Sort sort,
+    @PageableDefault(sort = { "name" }, direction = Sort.Direction.ASC) Pageable pageable, Sort sort,
       PagedResourcesAssembler<Product> pagedResourcesAssembler, UriComponentsBuilder builder) {
     sort = CommonUtils.stripColumnsFromSorting(sort, nonSortableColumns);
     productService.addSortToPageable(pageable, sort);
