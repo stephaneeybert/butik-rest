@@ -13,15 +13,11 @@ import com.thalasoft.butik.rest.resource.OrderResource;
 import com.thalasoft.butik.rest.resource.ProductResource;
 import com.thalasoft.toolbox.utils.CommonTools;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class FixtureService {
-
-  private static Logger logger = LoggerFactory.getLogger(FixtureService.class);
 
   @Autowired
   private OrderService orderService;
@@ -36,7 +32,6 @@ public class FixtureService {
   private List<Product> manyProducts;
 
   public void addData() {
-    logger.debug("===========>> In adData");
     manyProducts = new ArrayList<Product>();
     for (int i = 0; i < 40; i++) {
       String index = CommonTools.formatSortableStringNumber(i, 3);
@@ -66,7 +61,6 @@ public class FixtureService {
   }
 
   public void createProductResources() {
-    logger.debug("===========>> In createProductResources");
     List<ProductResource> manyProductResources = new ArrayList<ProductResource>();
     for (int i = 0; i < 30; i++) {
       String index = CommonTools.formatSortableStringNumber(i + 1, 2);
@@ -80,7 +74,6 @@ public class FixtureService {
   }
 
   public void createOrderResources() {
-    logger.debug("===========>> In createOrderResources");
     OrderResource orderResource0 = new OrderResource();
     orderResource0.setOrderRefId(1);
     orderResource0.setEmail("peter@gmail.com");
